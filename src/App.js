@@ -11,10 +11,16 @@ const App = () => {
     marca: 'Chevrolet'
   }
 
+  const estiloH1 = {
+    color: 'purple',
+    fontSize: '24px',
+
+  }
+
     return (
     //<React.Fragment>
     <>
-    <p>Olá {mostrarNome('Manzi')}</p>
+    <p style={estiloH1}>Olá {mostrarNome('Manzi')}</p>
     <p>Hoje é dia {new Date().getDate()}</p>
 
     <p>Seu carro é do ano {carro.ano} e da marca {carro.marca}</p>
