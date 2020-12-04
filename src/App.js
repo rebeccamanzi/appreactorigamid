@@ -6,11 +6,19 @@ const App = () => {
     return 'Rebecca ' + sobrenome;
   }
 
+  const carro = {
+    ano: 2020,
+    marca: 'Chevrolet'
+  }
+
     return (
     //<React.Fragment>
     <>
     <p>Olá {mostrarNome('Manzi')}</p>
     <p>Hoje é dia {new Date().getDate()}</p>
+
+    <p>Seu carro é do ano {carro.ano} e da marca {carro.marca}</p>
+
     <a className="ativo" href="https://origamid.com" title="Site Origamid">
       Origamid
     </a>
