@@ -1,9 +1,16 @@
 import React from 'react';
 
 const App = () => {
-  return (
+  
+  function mostrarNome(sobrenome) {
+    return 'Rebecca ' + sobrenome;
+  }
+
+    return (
     //<React.Fragment>
     <>
+    <p>Olá {mostrarNome('Manzi')}</p>
+    <p>Hoje é dia {new Date().getDate()}</p>
     <a className="ativo" href="https://origamid.com" title="Site Origamid">
       Origamid
     </a>
@@ -17,3 +24,4 @@ const App = () => {
 export default App;
 // React.Fragment ou <> </>
 // atributos com nomes compostos devem ser utilizados como camelCase. ex: <video autoPlay>
+// para colocar js no jsx, usar {} (variaveis, expressoes, etc)
