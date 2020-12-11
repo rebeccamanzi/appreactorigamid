@@ -1,37 +1,51 @@
 import React from 'react';
 
+// Mostre os dados da aplicação, como aprensetado no vídeo
+// Não utilize CSS externo, use o style para mudar as cores
+// Se a situação estiver ativa pinte de verde, inativa vermelho
+// Se o gasto for maior que 10000 mostre uma mensagem
+const luana = {
+  cliente: 'Luana',
+  idade: 27,
+  compras: [
+    { nome: 'Notebook', preco: 'R$ 2500' },
+    { nome: 'Geladeira', preco: 'R$ 3000' },
+    { nome: 'Smartphone', preco: 'R$ 1500' },
+  ],
+  ativa: true,
+};
+
+const mario = {
+  cliente: 'Mario',
+  idade: 31,
+  compras: [
+    { nome: 'Notebook', preco: 'R$ 2500' },
+    { nome: 'Geladeira', preco: 'R$ 3000' },
+    { nome: 'Smartphone', preco: 'R$ 1500' },
+    { nome: 'Guitarra', preco: 'R$ 3500' },
+  ],
+  ativa: false,
+};
+
 const App = () => {
-  
-  function mostrarNome(sobrenome) {
-    return 'Rebecca ' + sobrenome;
-  }
+  const dados = mario;
+  const total = dados.compras
+    .map((item) => Number(item.preco.replace('R$ ', ''))) // transforma os itens 'preco' do array em numeros
+    .reduce((a, b) => a + b); // irá somar o primeiro número com o próximo, até finalizar
 
-  const carro = {
-    ano: 2020,
-    marca: 'Chevrolet'
-  }
-
-  const estiloH1 = {
-    color: 'purple',
-    fontSize: '24px',
-
-  }
-
-    return (
-    //<React.Fragment>
-    <>
-    <p style={estiloH1}>Olá {mostrarNome('Manzi')}</p>
-    <p>Hoje é dia {new Date().getDate()}</p>
-
-    <p>Seu carro é do ano {carro.ano} e da marca {carro.marca}</p>
-
-    <a className="ativo" href="https://origamid.com" title="Site Origamid">
-      Origamid
-    </a>
-    <label htmlFor="nome">Nome</label>
-    <input type="text" id="nome"/>
-    </>
-    //</React.Fragment>  
+  return (
+    <div>
+      <p>Nome: {dados.cliente}</p>
+      <p>Idade: {dados.idade}</p>
+      <p>
+        Situação:{' '}
+        <span style={{ color: dados.ativa ? 'green' : 'red' }}>
+          {dados.ativa ? 'Ativa' : 'Inativa'}
+        </span>
+      </p>
+      <p>Total gasto: R${total}</p>
+      {total > 10000 && <p>Você está gastando muito</p>}
+    </div>
   );
 };
 
