@@ -1,17 +1,25 @@
 import React from 'react';
+import Footer from './Footer';
+import { Form } from './Form/Form';
+import Header from './Header';
 
-// Podemos atribuir eventos diretamente aos elementos JSX como um atributo. Os eventos são sintáticos, ou seja, são criados pelo próprio React porém seguindo as especificações da W3C (e funcionam igualmente nos diversos browsers que o React suporta).
+const Teste = () => {
+  const active = false;
+  if (active) {
+    return <p>Ativo</p>;
+  } else {
+    return null; // sempre precisa retornar algo, nem q seja null
+  }
+};
 
 const App = () => {
-  function handleClick(event) {
-    alert('Comprou: ' + event.target.innerText);
-  }
-
   return (
-    <div>
-      <button onClick={handleClick}>Camisa</button>
-      <button onClick={handleClick}>Bermuda</button>
-    </div>
+    <>
+      <Header />
+      <Teste />
+      <Form />
+      <Footer />
+    </>
   );
 };
 
