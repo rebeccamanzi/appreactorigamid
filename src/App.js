@@ -1,17 +1,17 @@
 import React from 'react';
-import Home from './Home';
-import Header from './Header';
-import Produtos from './Produtos';
 
 const App = () => {
-  const { pathname } = window.location;
-  const Pagina = pathname === '/produtos' ? Produtos : Home;
+  // 'ativo' iniciará como true
+  // setAtivo altera seu valor
+  // setNome é o padrão utilizado 
+  const [ativo, setAtivo] = React.useState(true);
 
   return (
-    <div>
-      <Header />
-      <Pagina />
-    </div>
+    // ao clicar, o valor será atualizado para o seu contrário (!ativo)
+    // isso dará um efeito de ativar e desativar
+    <button onClick={() => setAtivo(!ativo)}>
+      {ativo ? 'Botão Ativo' : 'Botão Inativo'}
+    </button>
   );
 };
 
