@@ -1,15 +1,16 @@
 import React from 'react';
+import Home from './Home';
+import Header from './Header';
+import Produtos from './Produtos';
 
 const App = () => {
-  // Declare uma nova variável de state, a qual chamaremos de "count"
-  // useState é um dos Hooks do React
-  const [count, setCount] = React.useState(0);
+  const { pathname } = window.location;
+  const Pagina = pathname === '/produtos' ? Produtos : Home;
 
   return (
     <div>
-      <button onClick={() => setCount(count + 1)}>Comprar</button>
-      <p>Total: {count}</p>
-      <p>Preço: R$ {count * 250}</p>
+      <Header />
+      <Pagina />
     </div>
   );
 };
