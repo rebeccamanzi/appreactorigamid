@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Produto from './Produto';
 
 const App = () => {
-  const [items, setItems] = React.useState(['Item 1', 'Item 2']);
+  const [dados, setDados] = useState(null);
+  const [loading, setLoading] = useState(null);
 
-  function handleClick() {
-    // Errado. Modifique o estado apenas com a função de atualização (setItems)
-    items.push('Novo Item');
-  }
-
-  function handleClickReativo() {
-    // Correto. Eu desestruturo a array atual, criando uma nova e adiciono um novo elemento
-    setItems([...items, 'Novo Item']);
+  async function handleClick(event) {
+    setLoading(true);
+    // busca dos dados na API
+    // ${event.target.innerText} -> para saber o nome do produto
+    const response = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`,
+    );
+    const json = await response.json();
+    setDados(json);
+    setLoading(false);
   }
 
   return (
-    <>
-      {items.map((item, i) => (
-        <li key={i}>{item}</li>
-      ))}
-      <button onClick={handleClick}>Adicionar Item</button>
-      <button onClick={handleClickReativo}>Adicionar Reativo</button>
-    </>
+    <div>
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        notebook
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        smartphone
+      </button>
+      <button style={{ margin: '.5rem' }} onClick={handleClick}>
+        tablet
+      </button>
+      {loading && <p>Loading...</p>}
+      {!loading && dados && <Produto dados={dados} />}
+    </div>
   );
 };
 
-
 export default App;
+
+//  {dados && <Produto dados={dados} />}:
+// mostrará o produto apenas se os dados já tiverem carregados
